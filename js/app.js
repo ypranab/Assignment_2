@@ -8,10 +8,10 @@ loadFoods();
 
 const showMeals = (meals) => {
   let container = document.getElementById("container");
-  container.innerHTML = "";
+  //container.innerHTML = "";
   meals.forEach((meal) => {
     let mealCard = document.createElement("div");
-    mealCard.classList = "card card-compact bg-base-100 shadow-xl";
+    mealCard.classList = "card card-compact bg-base-100 shadow-xl mt-8";
 
     mealCard.innerHTML = `
             <figure>
