@@ -1,5 +1,10 @@
-const loadFoods = async () => {
-  const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+const loadFoods = async (category) => {
+  let url = "";
+  if (category == undefined) {
+    url = "https://www.themealdb.com/api/json/v1/1/search.php?s=potato";
+  } else {
+    url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${category}`;
+  }
   const res = await fetch(url);
   const data = await res.json();
   showMeals(data.meals);
@@ -8,7 +13,7 @@ loadFoods();
 
 const showMeals = (meals) => {
   let container = document.getElementById("container");
-  //container.innerHTML = "";
+  container.innerHTML = "";
   meals.forEach((meal) => {
     let mealCard = document.createElement("div");
     mealCard.classList = "card card-compact bg-base-100 shadow-xl mt-8";
@@ -21,12 +26,7 @@ const showMeals = (meals) => {
                 <h2 class="card-title">${meal.strMeal}</h2>
                 <p title="${
                   meal.strInstructions
-                }" >${meal.strInstructions.slice(0, 200)}...</p>
-                <div class="card-actions justify-end">
-                    <button onclick="handleShowDetails(${
-                      meal.idMeal
-                    })" class="btn btn-primary">Show Details</button>
-                </div>
+                }" >${meal.strInstructions.slice(0, 300)}...</p>
             </div>   
         `;
     container.appendChild(mealCard);
